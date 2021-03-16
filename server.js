@@ -4,7 +4,6 @@ const express = require('express');
 const http = require('http');
 const https = require('https');
 const parser = require('body-parser');
-const querystring = require('querystring');
 const fetch = require('node-fetch');
 
 const port = process.env.PORT || 80;
@@ -24,7 +23,8 @@ async function getJSON(endpoint, city) {
     return json;
 }
 
-let cities = ["London", "Berlin", "New York", "Tokyo", "Hong Kong"];
+let cities = ["London", "Paris", "Berlin", "Copenhagen", "Madrid", 
+			  "New York", "Vancouver", "Tokyo", "Hong Kong", "Sydney"];
 const kelvinFactor = -273.15;
 
 /* home page index.html */
@@ -50,13 +50,14 @@ app.post("/filter-results", async function(req, res) {
 		hours: req.body.hours
 	};
 	let json = await getJSON('forecast', filter.city);
-	res.json(json);
+	let chunk = json.list[filter.hours - 1]; //based on user-selected time
+	console.log(chunk);
+	res.json(chunk);
 
 	/**
 	 * TODO: Another .ejs page displaying filter results
-	 * res.render('.ejs', params);
+	 * res.render('.ejs', {chunk: chunk});
 	 */
-
 });
 
 http.createServer(app).listen(port);

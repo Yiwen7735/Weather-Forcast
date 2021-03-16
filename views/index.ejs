@@ -6,9 +6,7 @@
   <link rel='stylesheet' href='/public/stylesheets/style.css' />
 </head>
 
-<body>
-  <h1>Welcome to Weather Forecast App</h1>
-</body>
+<h1>Welcome to Weather Forecast App</h1>
 
 <style>
   table {
@@ -28,18 +26,15 @@
     background-color: #dddddd;
   }
 </style>
-</head>
 
 <body>
-
   <h2>Current weather</h2>
-
   <table>
     <tr>
       <th>City</th>
       <th>Weather</th>
-      <th>Temperature</th>
-      <th>Feels like</th>
+      <th>Temperature(&#176;C)</th>
+      <th>Feels like(&#176;C)</th>
     </tr>
     <% for (var row of current) {%>
     <tr>
@@ -52,24 +47,17 @@
   </table>
 </br>
 <form method="POST" action='/filter-results'>
-  I would like to check out 
+  I would like to know the weather in 
       <select id="city" name="city">
-        <option value='London'>London</option>
-        <option value='Berlin'>Berlin</option>
-        <option value='New%20York'>New York</option>
-        <option value='Tokyo'>Tokyo</option>
-        <option value='Hong%20Kong'>Hong Kong</option>
+        <% for (var row of current) { %>
+          <option value='<%= row.city %>'><%= row.city %></option>
+        <% } %>
       </select>
-      in
+      in approximately 
       <select id="hours" name="hours">
-        <option value=1>6</option>
-        <option value=2>12</option>
-        <option value=3>18</option>
-        <option value=4>24</option>
-        <option value=5>30</option>
-        <option value=6>36</option>
-        <option value=7>42</option>
-        <option value=8>48</option>
+        <% for (var i = 1; i <= 16; ++i) { %>
+          <option value='<%= i%>'><%=i * 3 %></option>
+        <% } %>
       </select>
       hours
     <button>Check out weather!</button>
