@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+</body>
+
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+
+<body>
+
+  <h2>Weather App</h2>
+
+  <table>
+    <tr>
+      <th>City</th>
+      <th>Weather</th>
+      <th>Temperature</th>
+    </tr>
+    <tr>
+      <td>London</td>
+      <td>Cloudy</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Sunny</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>New York</td>
+      <td>Rainy</td>
+      <td>67</td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
