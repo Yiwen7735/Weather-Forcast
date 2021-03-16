@@ -1,4 +1,4 @@
-# Buddy Challenge: Build A Weather Forcast App
+# Buddy Challenge: Build A Weather Forecast App
 
 ### Overview
 
