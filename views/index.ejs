@@ -2,18 +2,12 @@
 <html>
 
 <head>
-  <title>
-    <%= title %>
-  </title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Weather Forecast</title>
+  <link rel='stylesheet' href='/public/stylesheets/style.css' />
 </head>
 
 <body>
-  <h1>
-    <%= title %>
-  </h1>
-  <p>Welcome to <%= title %>
-  </p>
+  <h1>Welcome to Weather Forecast App</h1>
 </body>
 
 <style>
@@ -38,30 +32,48 @@
 
 <body>
 
-  <h2>Weather App</h2>
+  <h2>Current weather</h2>
 
   <table>
     <tr>
       <th>City</th>
       <th>Weather</th>
       <th>Temperature</th>
+      <th>Feels like</th>
     </tr>
+    <% for (var row of current) {%>
     <tr>
-      <td>London</td>
-      <td>Cloudy</td>
-      <td>55</td>
+      <td><%= row.city %></td>
+      <td><%= row.weather %></td>
+      <td><%= row.temp %></td>
+      <td><%= row.temp_feel %></td>
     </tr>
-    <tr>
-      <td>Berlin</td>
-      <td>Sunny</td>
-      <td>88</td>
-    </tr>
-    <tr>
-      <td>New York</td>
-      <td>Rainy</td>
-      <td>67</td>
-    </tr>
+    <% } %>
   </table>
+</br>
+<form method="POST" action='/filter-results'>
+  I would like to check out 
+      <select id="city" name="city">
+        <option value='London'>London</option>
+        <option value='Berlin'>Berlin</option>
+        <option value='New%20York'>New York</option>
+        <option value='Tokyo'>Tokyo</option>
+        <option value='Hong%20Kong'>Hong Kong</option>
+      </select>
+      in
+      <select id="hours" name="hours">
+        <option value=1>6</option>
+        <option value=2>12</option>
+        <option value=3>18</option>
+        <option value=4>24</option>
+        <option value=5>30</option>
+        <option value=6>36</option>
+        <option value=7>42</option>
+        <option value=8>48</option>
+      </select>
+      hours
+    <button>Check out weather!</button>
+</form>
 
 </body>
 
