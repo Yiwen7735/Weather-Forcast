@@ -51,9 +51,6 @@ app.post("/filter-results", async function(req, res) {
 	};
 	let json = await getJSON('forecast', filter.city);
 	let chunk = json.list[filter.hours - 1]; //based on user-selected time
-	console.log(chunk);
-	//res.json(chunk);
-  
   	results = {
   		'city': filter.city,
   		'hours': req.body.hours * 3, 
@@ -66,9 +63,7 @@ app.post("/filter-results", async function(req, res) {
 	    'wind': `Speed ${chunk.wind.speed}, Degree ${chunk.wind.deg}`,
 	    'visibility': chunk.visibility
   	}
-
 	res.render('filter-results.ejs', {results: results});
-	
 });
 
 http.createServer(app).listen(port);
