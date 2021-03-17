@@ -39,6 +39,7 @@ app.get('/index', async function(req, res){
 			"temp_feel": (w.main.feels_like + kelvinFactor).toFixed(1)
 		});
 	}
+  console.log("Hi");
 	res.render('index.ejs', {current: current});
 	
 });
@@ -53,6 +54,15 @@ app.post("/filter-results", async function(req, res) {
 	let chunk = json.list[filter.hours - 1]; //based on user-selected time
 	console.log(chunk);
 	res.json(chunk);
+  let results = []; //This is the array that we would pass to the filter-results.ejs page
+  results.push({
+    "city": city,
+    "weather": chunk.weather[0].description,
+    "temp": (chunk.main.temp + kelvinFactor).toFixed(1),
+    "temp_feel": (chunk.main.feels_like + kelvinFactor).toFixed(1),
+    "date": chunk.dt_txt.split(" ")[0],
+    "time": chunk.dt_txt.split(" ")[1],
+  });
 
 	/**
 	 * TODO: Another .ejs page displaying filter results
