@@ -29,17 +29,16 @@ const kelvinFactor = -273.15;
 
 /* home page index.html */
 app.get('/index', async function(req, res){
-	let current = [];
-	for (const city of cities) {
-		let w = await getJSON('weather', city);
+    let current = [];
+    for (const city of cities) {
+		let chunk = await getJSON('weather', city);
 		current.push({
-			"city": city,
-			"weather": w.weather[0].description,
-			"temp": (w.main.temp + kelvinFactor).toFixed(1),
-			"temp_feel": (w.main.feels_like + kelvinFactor).toFixed(1)
+			'city': city,
+			'weather': `${chunk.weather[0].main} (${chunk.weather[0].description})`,
+			'temp': (chunk.main.temp + kelvinFactor).toFixed(1),
+			'temp_feel': (chunk.main.feels_like + kelvinFactor).toFixed(1)
 		});
 	}
-  console.log("Hi");
 	res.render('index.ejs', {current: current});
 	
 });
@@ -53,21 +52,23 @@ app.post("/filter-results", async function(req, res) {
 	let json = await getJSON('forecast', filter.city);
 	let chunk = json.list[filter.hours - 1]; //based on user-selected time
 	console.log(chunk);
-	res.json(chunk);
-  let results = []; //This is the array that we would pass to the filter-results.ejs page
-  results.push({
-    "city": city,
-    "weather": chunk.weather[0].description,
-    "temp": (chunk.main.temp + kelvinFactor).toFixed(1),
-    "temp_feel": (chunk.main.feels_like + kelvinFactor).toFixed(1),
-    "date": chunk.dt_txt.split(" ")[0],
-    "time": chunk.dt_txt.split(" ")[1],
-  });
+	//res.json(chunk);
+  
+  	results = {
+  		'city': filter.city,
+  		'hours': req.body.hours * 3, 
+  		'weather': `${chunk.weather[0].main} (${chunk.weather[0].description})`,
+  		'temp': `${(chunk.main.temp + kelvinFactor).toFixed(1)} 
+  				(max ${(chunk.main.temp_max + kelvinFactor).toFixed(1)}, 
+  				min ${(chunk.main.temp_min + kelvinFactor).toFixed(1)})`,
+	    'temp_feel': (chunk.main.feels_like + kelvinFactor).toFixed(1),
+	    'humidity': chunk.main.humidity,
+	    'wind': `Speed ${chunk.wind.speed}, Degree ${chunk.wind.deg}`,
+	    'visibility': chunk.visibility
+  	}
 
-	/**
-	 * TODO: Another .ejs page displaying filter results
-	 * res.render('.ejs', {chunk: chunk});
-	 */
+	res.render('filter-results.ejs', {results: results});
+	
 });
 
 http.createServer(app).listen(port);

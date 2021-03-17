@@ -28,25 +28,42 @@
 </style>
 
 <body>
-  <h2>Filter Results</h2>
+  <h2>Weather of <strong><%= results.city%></strong> in 
+        <strong><%= results.hours%></strong> hours:</title></h2>
   <table>
     <tr>
       <th>City</th>
-      <th>Weather</th>
-      <th>Temperature(&#176;C)</th>
-      <th>Feels like(&#176;C)</th>
-      <th>Date</th>
-      <th>Time</th>
+      <th><%= results.city %></th>
     </tr>
-    <!-- This is where we would show the data that we get in JSON format. I think this should be right. Uncomment it when you want to use it-->
-    <!-- <tr>
-      <td><%= results.city %></td>
+    <tr>
+      <th>Weather</th>
       <td><%= results.weather %></td>
+    </tr>
+    <tr>
+      <td>Temperature (&#176;C)</td>
       <td><%= results.temp %></td>
+    </tr>
+    <tr>
+      <tr>
+      <td>Feel like (&#176;C)</td>
       <td><%= results.temp_feel %></td>
-      <td><%= results.date %></td>
-      <td><%= results.time %></td>
-    </tr> -->
+    </tr>
+    <tr>
+      <tr>
+      <td>Humidity</td>
+      <td><%= results.humidity %></td>
+    </tr>
+    <tr>
+      <tr>
+      <td>Wind</td>
+      <td><%= results.wind %></td>
+    </tr>
+    <tr>
+      <tr>
+      <td>Visibility</td>
+      <td><%= results.visibility %></td>
+    </tr>
+    </tr>
   </table>
 </body>
 
