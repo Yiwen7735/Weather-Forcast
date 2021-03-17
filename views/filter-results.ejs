@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Filter Result</title>
+  <link rel='stylesheet' href='/public/stylesheets/style.css' />
+</head>
+
+<h1>Welcome to Weather Forecast App</h1>
+
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<body>
+  <h2>Filter Results</h2>
+  <table>
+    <tr>
+      <th>City</th>
+      <th>Weather</th>
+      <th>Temperature(&#176;C)</th>
+      <th>Feels like(&#176;C)</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+    <!-- This is where we would show the data that we get in JSON format. I think this should be right. Uncomment it when you want to use it-->
+    <!-- <tr>
+      <td><%= results.city %></td>
+      <td><%= results.weather %></td>
+      <td><%= results.temp %></td>
+      <td><%= results.temp_feel %></td>
+      <td><%= results.date %></td>
+      <td><%= results.time %></td>
+    </tr> -->
+  </table>
+</body>
+
+</html>
