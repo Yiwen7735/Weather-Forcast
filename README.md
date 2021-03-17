@@ -8,3 +8,16 @@ This app was built using Node.js and Express. The front-end consists of two EJS 
 
 The back-end consists of a JS file, server.js, which loads all of our packages, sets up our Express framework, and contains our POST and GET calls to obtain our weather forecasts. 
 
+## Running the App
+The web app can be run using Node.js. You will need to have `npm` installed. The steps to run the application are:
+
+```lang=bash
+npm install
+node server.js
+```
+
+The second command will start the server on port 80 on the local machine. If you wish to run the server on a different port, you may start the server using:
+
+```lang=bash
+PORT=XXXX node server.js
+```
